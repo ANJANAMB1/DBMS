@@ -123,3 +123,30 @@ mysql> desc dependents;
 | employee_id  | int(11)     | YES  | MUL | NULL    |                |
 +--------------+-------------+------+-----+---------+----------------+
 5 rows in set (0.00 sec)
+
+1.select employee.* from employee join department d on employee.department_id=d.department_id join locations l on d.location_id=l.location
+_id where l.location_id=1700;
++-------------+------------+-----------+------------------+----------+------------+--------+------------+--------+---------------+
+| employee_id | first_name | last_name | email            | phone_no | hire_date  | salary | manager_id | job_id | department_id |
++-------------+------------+-----------+------------------+----------+------------+--------+------------+--------+---------------+
+|           4 | alfiya     | k         | alfiya@gmail.com | 12345678 | 2000-04-09 | 33000  |         28 |     12 |            14 |
++-------------+------------+-----------+------------------+----------+------------+--------+------------+--------+---------------+
+1 row in set (0.01 sec)mysql> insert into employee values(5,'ameena','s','ameenas@gmail.com',1234567,'2003-04-11',55000,48,12,15);
+Query OK, 1 row affected (0.07 sec)
+
+2.mysql> select * from employee where salary=(select MAX(salary)from employee);
++-------------+------------+-----------+-------------------+----------+------------+--------+------------+--------+---------------+
+| employee_id | first_name | last_name | email             | phone_no | hire_date  | salary | manager_id | job_id | department_id |
++-------------+------------+-----------+-------------------+----------+------------+--------+------------+--------+---------------+
+|           5 | ameena     | s         | ameenas@gmail.com | 1234567  | 2003-04-11 | 55000  |         48 |     12 |            15 |
++-------------+------------+-----------+-------------------+----------+------------+--------+------------+--------+---------------+
+1 row in set (0.01 sec)
+3.select e.employee_id,e.first_name from employee e join department d on e.department_id=d.department_id where d.location_id <> 1700;
++-------------+------------+
+| employee_id | first_name |
++-------------+------------+
+|           1 | alen       |
+|           5 | ameena     |
++-------------+------------+
+2 rows in set (0.01 sec)
+
